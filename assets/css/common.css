@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'OpenSansModified';
-    src: url('/assets/fonts/main.ttf') format('truetype');
+    src: url('/obfuscated-blog/assets/fonts/main.ttf') format('truetype'); /* base url */
     font-weight: normal;
     font-style: normal;
 }
