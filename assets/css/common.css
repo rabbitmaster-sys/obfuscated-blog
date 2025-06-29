@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'OpenSansModified';
+    src: url('/assets/fonts/main.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#main_content,
+#main_content > *
+{
+    font-family: 'OpenSansModified', sans-serif !important;
+    word-break: break-all;
+    overflow-wrap:break-word;
+}
