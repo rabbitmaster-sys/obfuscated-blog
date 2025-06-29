@@ -24,8 +24,8 @@ def randomPua():
     return ord(rand);
 
 def main():
-    font_path = "/workspaces/obfuscated-blog/~build/payload.ttf"
-    out_path = "/workspaces/obfuscated-blog/assets/fonts/main.ttf"
+    font_path = "payload.ttf"
+    out_path = "../assets/fonts/main.ttf"
 
     font = TTFont(font_path)
 
@@ -96,7 +96,7 @@ def main():
 
     font.setGlyphOrder(new_glyph_order)
     font.save(out_path)
-    with open("/workspaces/obfuscated-blog/_plugins/map.json","w") as f:
+    with open("../_plugins/map.json","w") as f:
         json.dump(char_pua_map,f);
 
     print(f"Info: Saved {out_path}")
