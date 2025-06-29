@@ -1,30 +1,22 @@
 require 'nokogiri'
+require 'json'
+
+file = File.read('_plugins/map.json')
+MAP = JSON.parse(file)
 
 module Jekyll
   module Obfuscate
     SKIP_TAGS = ['script', 'style', 'code', 'pre']
 
     def obfuscate(input)
-      chars_to_map = (
-        ('A'..'Z').to_a +
-        ('a'..'z').to_a +
-        ('0'..'9').to_a +
-        [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/',
-         ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
-      )
-
-      # Create map from chars to PUA starting at U+E001
-      map = {}
-      start_code = 0xE001
-      chars_to_map.each_with_index do |char, idx|
-        map[char] = [start_code + idx].pack("U")
-      end
-
       doc = Nokogiri::HTML::DocumentFragment.parse(input)
 
       doc.traverse do |node|
         if node.text? && !node.blank? && !inside_skip_tag?(node)
-          node.content = node.text.chars.map { |c| map.fetch(c, c) }.join
+          node.content = node.text.chars.map do |c|
+            val = MAP.fetch(c, c)
+            val.is_a?(Integer) ? val.chr(Encoding::UTF_8) : val
+          end.join
         end
       end
 
