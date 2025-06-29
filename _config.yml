@@ -22,7 +22,7 @@ title: Obfuscated-Blog
 email: cool-dev-guy@github.com
 description: >- # this means to ignore newlines until "baseurl:"
   Obfuscated site to prevent webscraping based on pix's blog.
-baseurl: ""
+baseurl: "/obfuscated-blog/"
 url: ""
 twitter_username: cool_dev_guy
 github_username:  cool-dev-guy
